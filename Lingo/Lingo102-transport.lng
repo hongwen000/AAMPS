@@ -1,0 +1,22 @@
+model:
+sets:
+	s/s1..s6/: cap;
+	t/t1..t8/: dem;
+	links(s,t): cost, volume;
+endsets
+min=@sum(links: cost*volume);
+@for(t(i):
+	@sum(s(j): volume(j,i)) = dem(i));
+@for(s(i):
+	@sum(t(j): cost(i,j)) <= cap(i));
+data:
+	cap=60 55 51 43 41 52;
+	dem=35 37 22 32 41 32 43 38;
+	cost=	6 2 6 7 4 2 9 5
+       		4 9 5 3 8 5 8 2
+       		5 2 1 9 7 4 3 3
+       		7 6 7 3 9 2 7 1
+       		2 3 9 5 7 2 6 5
+       		5 5 2 2 8 1 4 3;
+enddata
+end

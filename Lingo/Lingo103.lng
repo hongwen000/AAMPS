@@ -1,0 +1,3 @@
+max=80*disk+45*chair;
+15*disk+10*chair<=450;
+20*disk+5 *chair<=400;

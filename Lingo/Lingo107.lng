@@ -1,0 +1,18 @@
+model:
+sets:
+	box/box1..box7/: thick,weight,count;
+	car/car1 car2/;
+	link(box,car):cnt;
+endsets
+max=@sum(link(i,j): cnt(i,j) * thick(i));
+@for(car(j): @sum(box(i): thick(i)*cnt(i,j)) <= 1020);
+@for(car(j): @sum(box(i): weight(i)*cnt(i,j)) <= 40);
+@for(box(i)|i #ge# 5:
+	thick(i) * (cnt(i,1) + cnt(i,2)) < 302.7);
+@for(box(i): count(i) >= cnt(i,1) + cnt(i,2));
+@for(link:@gin(cnt));
+data:
+	thick=  48.7 52.0 61.3 72.0 48.7 52.0 64.0;
+	weight= 2    3    1    0.5  4    2    1;
+	count=  8    7    9    6    6    4    8;
+enddata
